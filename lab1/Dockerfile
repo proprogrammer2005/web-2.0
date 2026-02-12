@@ -4,10 +4,6 @@ RUN docker-php-ext-install pdo_mysql mysqli
 
 RUN a2enmod rewrite
 
-RUN echo "upload_max_filesize = 64M" >> /usr/local/etc/php/conf.d/custom.ini \
-    && echo "post_max_size = 64M" >> /usr/local/etc/php/conf.d/custom.ini \
-    && echo "memory_limit = 512M" >> /usr/local/etc/php/conf.d/custom.ini
-
 WORKDIR /var/www/html
 
 COPY www/ /var/www/html/

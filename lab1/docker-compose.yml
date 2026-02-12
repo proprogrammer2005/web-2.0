@@ -8,8 +8,6 @@ services:
       - "8080:80"          
     depends_on:
       - db
-    networks:
-      - app-net
 
   db:
     image: mysql:8.0
@@ -19,13 +17,11 @@ services:
       MYSQL_ROOT_PASSWORD: root123      
       MYSQL_DATABASE: lab1_db
       MYSQL_USER: appuser
-      MYSQL_PASSWORD: appPass2026
+      MYSQL_PASSWORD: appPass
     volumes:
       - db-data:/var/lib/mysql
     ports:
       - "3307:3306"
-    networks:
-      - app-net
 
   phpmyadmin:
     image: phpmyadmin:5-apache
@@ -39,12 +35,3 @@ services:
       PMA_PORT: 3306
     depends_on:
       - db
-    networks:
-      - app-net
-
-networks:
-  app-net:
-    driver: bridge
-
-volumes:
-  db-data:
