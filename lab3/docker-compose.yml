@@ -1,21 +1,21 @@
 services:
   web:
     build: .
-    container_name: lab1-web
+    container_name: lab3-web
     ports:
-      - "8080:80"          
+      - "8080:80"  
+    volumes:
+      - ./www:/var/www/html        
     depends_on:
       - db
-    volumes:
-      - ./www:/var/www/html
 
   db:
     image: mysql:8.0
-    container_name: lab1-db
+    container_name: lab3-db
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: root123      
-      MYSQL_DATABASE: lab1_db
+      MYSQL_DATABASE: lab3_db
       MYSQL_USER: appuser
       MYSQL_PASSWORD: appPass
     volumes:
@@ -25,7 +25,7 @@ services:
 
   phpmyadmin:
     image: phpmyadmin:5-apache
-    container_name: lab1-pma
+    container_name: lab3-pma
     restart: always
     ports:
       - "8081:80"                       
